@@ -32,7 +32,7 @@ server.bind(addr)
 # FUNCTION for CHATROOM connection
 def startChat():
 
-    print("\n\n [+] CHATROOM SERVER is up and running : " + SERVER) 
+    print("\n [+] CHATROOM SERVER is up and running : " + SERVER) 
 
     server.listen(5) 
 
@@ -51,9 +51,9 @@ def startChat():
         print(f" [+] Name :{name}") 
           
 
-        broadcastMessage(f" [+] {name} has joined the chat!") 
+        broadcastMessage(f"\n [+] {name} has joined the chat!") 
           
-        conn.send(encrypt(' [+] Connection successful!'))
+        conn.send(encrypt(' [+] Connection successful! \n'))
 
         thread = threading.Thread(target = handle, args = (conn, addr)) 
         thread.start() 

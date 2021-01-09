@@ -41,26 +41,26 @@ class GUI:
         # TITLE for the LOG IN display
         self.login.title("LOG IN")
         self.login.resizable(width = 0, height = 0)
-        self.login.configure(width = 300, height = 250)
+        self.login.configure(width = 300, height = 350, bg = "black")
 
         # LABEL for entering CHATROOM by sending NAME to the server
         self.labelLogin = Label(self.login, text = "To join the chat room,\n enter your name", 
-                       justify = CENTER, font = "Verdana 14 bold") 
+                       justify = CENTER, font = "courier 14 bold", fg = "green", bg = "black") 
         self.labelLogin.place(relheight = 0.3, relx = 0.1, rely = 0.07) 
 
-        self.labelName = Label(self.login, text = " NAME  ", font = "Verdana 14") 
-        self.labelName.place(relheight = 0.2, relx = 0.1, rely = 0.5) 
+        self.labelName = Label(self.login, text = " NAME : ", font = "courier 14", fg = "green", bg = "black") 
+        self.labelName.place(relheight = 0.09, relx = 0.1, rely = 0.5) 
 
         # ENTRY for NAME
-        self.entryName = Entry(self.login, font = "Verdana 14") 
-        self.entryName.place(relwidth = 0.5, relheight = 0.2, relx = 0.38, rely = 0.5) 
+        self.entryName = Entry(self.login, font = "courier 14", bg = "grey") 
+        self.entryName.place(relwidth = 0.5, relheight = 0.09, relx = 0.38, rely = 0.5) 
         self.entryName.focus() 
 
         # BUTTON to send NAME to the server
-        self.sendName = Button(self.login, text = "ENTER", font = "Verdana 14 bold",
+        self.sendName = Button(self.login, text = "ENTER", font = "courier 14 bold",
                          command = lambda: self.goAhead(self.entryName.get()))
 
-        self.sendName.place(relx = 0.35, rely = 0.75)
+        self.sendName.place(relx = 0.35, rely = 0.80)
 
         self.root.mainloop()
 
@@ -81,42 +81,42 @@ class GUI:
         self.root.deiconify() 
         self.root.title("CHATROOM") 
         self.root.resizable(width = 0, height = 0) 
-        self.root.configure(width = 470, height = 550, bg = "#17202A")
+        self.root.configure(width = 470, height = 550, bg = "black")
 
-        self.labelTop = Label(self.root, bg = "#17202A", fg = "#EAECEE", 
-                              text = self.name , font = "Verdana 13 bold", pady = 5)
+        self.labelTop = Label(self.root, bg = "black", fg = "green", 
+                              text = "\n" + self.name , font = "courier 15 bold", pady = 3)
 
         self.labelTop.place(relwidth = 1)
 
-        self.line = Label(self.root, width = 450, bg = "#ABB2B9")
+        self.line = Label(self.root, width = 450, bg = "green")
 
         self.line.place(relwidth = 1, rely = 0.07, relheight = 0.012)
 
-        self.textCons = Text(self.root, width = 20, height = 2, bg = "#17202A", 
-                             fg = "#EAECEE", font = "Verdana 14", padx = 5, pady = 5)
+        self.textCons = Text(self.root, width = 20, height = 2, bg = "black", 
+                             fg = "green", font = "courier 12", padx = 5, pady = 3)
 
         self.textCons.place(relheight = 0.745, relwidth = 1, rely = 0.08) 
 
-        self.labelBottom = Label(self.root, bg = "#ABB2B9", height = 80) 
+        self.labelBottom = Label(self.root, bg = "#2f3133", height = 79) 
 
         self.labelBottom.place(relwidth = 1, rely = 0.825)
 
 	# ENTRY for message
-	self.entryMsg = Entry(self.labelBottom, bg = "#2C3E50", fg = "#EAECEE", font = "Verdana 13") 
-        self.entryMsg.place(relwidth = 0.74, relheight = 0.06, rely = 0.008, relx = 0.011)
+	self.entryMsg = Entry(self.labelBottom, bg = "grey", fg = "black", font = "courier 13") 
+        self.entryMsg.place(relwidth = 0.74, relheight = 0.05, rely = 0.0075, relx = 0.011)
         self.entryMsg.focus()
 
         # BUTTON for sending message
-        self.buttonMsg = Button(self.labelBottom, text = "SEND", font = "Verdana 10 bold",  
-                                width = 20, bg = "#ABB2B9",
+        self.buttonMsg = Button(self.labelBottom, text = "SEND", font = "courier 10 bold",  
+                                width = 20, bg = "green", fg = "black", 
                                 command = lambda : self.sendButton(self.entryMsg.get())) 
 
-        self.buttonMsg.place(relx = 0.77, rely = 0.008, relheight = 0.06, relwidth = 0.22)
+        self.buttonMsg.place(relx = 0.77, rely = 0.0097, relheight = 0.04, relwidth = 0.22)
 
         self.textCons.config(cursor = "arrow") 
 
         # SCROLL BAR for CHATBOX
-        scrollbar = Scrollbar(self.textCons) 
+        scrollbar = Scrollbar(self.textCons, bg = "green") 
         scrollbar.place(relheight = 1, relx = 0.974)
         scrollbar.config(command = self.textCons.yview) 
 
@@ -143,7 +143,7 @@ class GUI:
                 else: 
                     # INSERT messages into CHATBOX
                     self.textCons.config(state = NORMAL) 
-                    self.textCons.insert(END, message+"\n\n") 
+                    self.textCons.insert(END, message+"\n") 
                     self.textCons.config(state = DISABLED) 
                     self.textCons.see(END) 
             except: 
