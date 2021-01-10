@@ -68,12 +68,14 @@ class GUI:
 
         # BUTTON to send NAME to the server
         self.sendName = Button(self.login, text = "JOIN", font = "Verdana 15 bold", fg = "#F8F8F8", bg = "#FBAD34" ,
-                         command = lambda: self.goAhead(self.entryName.get()))
+                         command = lambda: self.enterCHAT(self.entryName.get()))
         self.sendName.place(relwidth = 0.5, relheight = 0.15, relx = 0.25, rely = 0.75)
 
+	# LOOP for ROOT
         self.root.mainloop()
 
-    def goAhead(self, name): 
+    # FUNCTION to enter CHATBOX and create thread to receive messages
+    def enterCHAT(self, name): 
         self.login.destroy() 
         self.layout(name) 
 
