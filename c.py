@@ -145,7 +145,13 @@ class GUI:
                 message = temp.decode()
                 # If the messages from the server is NAME then send the client's name 
                 if message == 'NAME': 
-                    client.send(encrypt(self.name)) 
+                    client.send(encrypt(self.name))
+		elif message == '!bye':
+		    self.textCons.config(state = NORMAL) 
+                    self.textCons.insert(END, message+"\n") 
+                    self.textCons.config(state = DISABLED) 
+                    self.textCons.see(END
+		    client.close()
                 else: 
                     # INSERT messages into CHATBOX
                     self.textCons.config(state = NORMAL) 
