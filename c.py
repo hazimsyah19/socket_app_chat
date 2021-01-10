@@ -133,7 +133,7 @@ class GUI:
         self.textCons.config(state = DISABLED) 
         self.msg=msg 
         self.entryMsg.delete(0, END) 
-        snd= threading.Thread(target = self.sendMessage) 
+        snd = threading.Thread(target = self.sendMessage) 
         snd.start() 
 
     # FUNCTION to receive messages from the server
@@ -146,12 +146,12 @@ class GUI:
                 # If the messages from the server is NAME then send the client's name 
                 if message == 'NAME': 
                     client.send(encrypt(self.name))
-		elif message == '!bye':
-		    self.textCons.config(state = NORMAL) 
+                elif message == '!bye':
+                    self.textCons.config(state = NORMAL) 
                     self.textCons.insert(END, message+"\n") 
                     self.textCons.config(state = DISABLED) 
                     self.textCons.see(END)
-		    client.close()
+                    client.close()
                     self.root.destroy()
                 else: 
                     # INSERT messages into CHATBOX
