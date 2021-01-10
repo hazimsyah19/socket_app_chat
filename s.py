@@ -81,7 +81,10 @@ def handle(conn, addr):
         msg = conn.recv(1024)
         temp = decrypt(msg)
         message = temp.decode()
-        broadcastMessage(message)
+        if message == '!bye':
+            broadcastMessage(name + ' left the chat')
+        else:
+            broadcastMessage(message)
 
     conn.close() 
 
@@ -90,6 +93,5 @@ def broadcastMessage(message):
     for client in clients:
         msg = encrypt(message)
         client.send(msg)
-
 # FUNCTION call for  CHATROOM server
 startChat() 
