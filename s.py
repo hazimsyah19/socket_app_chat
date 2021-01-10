@@ -71,7 +71,9 @@ def startChat():
         print(f" [+] Active connections : {threading.activeCount()-1}") 
 
 # FUNCTION to hande incoming connection and messages 
+
 def handle(conn, addr , name): 
+
 
     print(f" [+] New connection : {addr}") 
     connected = True
