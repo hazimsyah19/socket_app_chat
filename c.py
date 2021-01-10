@@ -2,12 +2,13 @@ import socket
 import threading 
 from tkinter import *
 from tkinter import font 
-from tkinter import ttk 
+from tkinter import ttk
+from PIL import ImageTk, Image 
 from Crypto.Cipher import AES
 
 # SERVER address and PORT number, fill in beforehand
 PORT = 5050
-SERVER = "192.168.0.117"
+SERVER = "192.168.42.152"
 ADDRESS = (SERVER, PORT) 
 sixt = "utf-8"
   
@@ -41,26 +42,33 @@ class GUI:
         # TITLE for the LOG IN display
         self.login.title("LOG IN")
         self.login.resizable(width = 0, height = 0)
-        self.login.configure(width = 300, height = 350, bg = "black")
+        self.login.configure(width = 400, height = 600, bg = "black")
 
         # LABEL for entering CHATROOM by sending NAME to the server
+        image0 = Image.open("/home/khai/Desktop/socket_app_chat/161026056787944340.png")
+        image1 = image0.resize((200,200), Image.ANTIALIAS)
+        self.img = ImageTk.PhotoImage(image1)
+        self.canvas = Label(self.login, width = 200, height = 200,image = self.img, bg = "black")
+        self.canvas.image = self.img
+        self.canvas.place(x =100, y = 10)
+
         self.labelLogin = Label(self.login, text = "To join the chat room,\n enter your name", 
                        justify = CENTER, font = "courier 14 bold", fg = "green", bg = "black") 
-        self.labelLogin.place(relheight = 0.3, relx = 0.1, rely = 0.07) 
+        self.labelLogin.place(relheight = 0.3, relx = 0.20, rely = 0.30) 
 
         self.labelName = Label(self.login, text = " NAME : ", font = "courier 14", fg = "green", bg = "black") 
-        self.labelName.place(relheight = 0.09, relx = 0.1, rely = 0.5) 
+        self.labelName.place(relheight = 0.09, relx = 0.1, rely = 0.6) 
 
         # ENTRY for NAME
         self.entryName = Entry(self.login, font = "courier 14", bg = "grey") 
-        self.entryName.place(relwidth = 0.5, relheight = 0.09, relx = 0.38, rely = 0.5) 
+        self.entryName.place(relwidth = 0.5, relheight = 0.09, relx = 0.38, rely = 0.6) 
         self.entryName.focus() 
 
         # BUTTON to send NAME to the server
         self.sendName = Button(self.login, text = "ENTER", font = "courier 14 bold",
                          command = lambda: self.goAhead(self.entryName.get()))
 
-        self.sendName.place(relx = 0.35, rely = 0.80)
+        self.sendName.place(relx = 0.4, rely = 0.8)
 
         self.root.mainloop()
 
