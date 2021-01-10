@@ -65,7 +65,7 @@ def startChat():
           
         conn.send(encrypt(' [+] Connection successful! \n'))
 
-        thread = threading.Thread(target = handle, args = (conn, addr,name)) 
+        thread = threading.Thread(target = handle, args = (conn, addr,name))
         thread.start() 
 
         print(f" [+] Active connections : {threading.activeCount()-1}") 
@@ -78,8 +78,8 @@ def handle(conn, addr , name):
     print(f" [+] New connection : {addr}") 
     connected = True
 
-    while connected: 
-        
+    while connected:
+
         msg = conn.recv(1024)
         temp = decrypt(msg)
         message = temp.decode()
