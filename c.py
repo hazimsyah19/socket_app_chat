@@ -150,8 +150,9 @@ class GUI:
 		    self.textCons.config(state = NORMAL) 
                     self.textCons.insert(END, message+"\n") 
                     self.textCons.config(state = DISABLED) 
-                    self.textCons.see(END
+                    self.textCons.see(END)
 		    client.close()
+                    self.root.destroy()
                 else: 
                     # INSERT messages into CHATBOX
                     self.textCons.config(state = NORMAL) 
@@ -168,7 +169,7 @@ class GUI:
     def sendMessage(self):
         self.textCons.config(state=DISABLED) 
         while True: 
-            msg = (f"{self.name}: {self.msg}") 
+            msg = (f" {self.name} : {self.msg}") 
             message = encrypt(msg)
             client.send(message)
             break

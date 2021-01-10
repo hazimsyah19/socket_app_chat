@@ -43,7 +43,7 @@ def startChat():
 
     print("\n [+] CHATROOM SERVER is up and running : " + SERVER) 
 
-    print("\n [+] CHATROOM SERVER is waiting for connection... ")
+    print("\n [+] CHATROOM SERVER is waiting for connection... \n")
     server.listen(5) 
 
     while True:
@@ -58,12 +58,12 @@ def startChat():
         names.append(name) 
         clients.append(conn) 
           
-        print(f" [+] Name :{name}") 
+        print(f"\n [+] Name : {name}") 
           
 
         broadcastMessage(f"\n [+] {name} has joined the chat!") 
           
-        conn.send(encrypt(' [+] Connection successful! \n'))
+        conn.send(encrypt(' [+] Connection successful! Enter !bye to quit. \n'))
 
         thread = threading.Thread(target = handle, args = (conn, addr,name))
         thread.start() 
@@ -88,9 +88,8 @@ def handle(conn, addr , name):
         if g != '!bye':
             broadcastMessage(message)
         else:
-            broadcastMessage('%s left the chat' % name)
+            broadcastMessage('\n [+] %s left the chat' % name)
             conn.close()
-            server.close()
             break
 
 # FUNCTION to send and display messages to other CLIENTS
