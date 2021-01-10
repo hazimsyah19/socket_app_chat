@@ -7,7 +7,7 @@ from Crypto.Cipher import AES
 
 # SERVER address and PORT number, fill in beforehand
 PORT = 5050
-SERVER = "192.168.42.152"
+SERVER = "192.168.0.117"
 ADDRESS = (SERVER, PORT) 
 sixt = "utf-8"
   
@@ -102,7 +102,7 @@ class GUI:
         self.labelBottom.place(relwidth = 1, rely = 0.825)
 
 	# ENTRY for message
-	self.entryMsg = Entry(self.labelBottom, bg = "grey", fg = "black", font = "courier 13") 
+        self.entryMsg = Entry(self.labelBottom, bg = "grey", fg = "black", font = "courier 13")
         self.entryMsg.place(relwidth = 0.74, relheight = 0.05, rely = 0.0075, relx = 0.011)
         self.entryMsg.focus()
 

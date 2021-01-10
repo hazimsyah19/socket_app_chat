@@ -1,6 +1,13 @@
 import socket 
 import threading 
 from Crypto.Cipher import AES
+from os import system, name
+
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 
 # FUNCTION for ENCRYPTION
 def encrypt(encrypt_data):
@@ -32,8 +39,11 @@ server.bind(addr)
 # FUNCTION for CHATROOM connection
 def startChat():
 
+    clear()
+
     print("\n [+] CHATROOM SERVER is up and running : " + SERVER) 
 
+    print("\n [+] CHATROOM SERVER is waiting for connection... ")
     server.listen(5) 
 
     while True:
