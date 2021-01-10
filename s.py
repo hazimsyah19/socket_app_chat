@@ -65,7 +65,7 @@ def startChat():
           
         conn.send(encrypt(' [+] Connection successful! \n'))
 
-        thread = threading.Thread(target = handle, args = (conn, addr)) 
+        thread = threading.Thread(target = handle, args = (conn, addr , name)) 
         thread.start() 
 
         print(f" [+] Active connections : {threading.activeCount()-1}") 
@@ -76,17 +76,19 @@ def handle(conn, addr):
     print(f" [+] New connection : {addr}") 
     connected = True
 
-    while connected: 
-
+    while connected:
         msg = conn.recv(1024)
         temp = decrypt(msg)
         message = temp.decode()
-        if message == '!bye':
-            broadcastMessage(name + ' left the chat')
-        else:
+        #print(len(message))
+        g = message[message.index(" ") + 1:]
+        if g != '!bye':
             broadcastMessage(message)
-
-    conn.close() 
+        else:
+            broadcastMessage('%s left the chat' % name)
+            conn.close()
+            server.close()
+            break
 
 # FUNCTION to send and display messages to other CLIENTS
 def broadcastMessage(message):
